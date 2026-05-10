@@ -10,6 +10,238 @@ default_dirs:
     - global: ~/.claude/commands/
 
 library:
-  skills: []
-  agents: []
-  prompts: []
+  skills:
+    - name: apple-identity
+      description: Resolve Apple DSID / AppleConnect credentials / Westgate JWT for internal services
+      source: https://github.com/plandrem/agent-library/blob/main/skills/apple-identity/SKILL.md
+
+    - name: damage-control
+      description: Install and manage Claude Code Damage Control security hooks (protected paths, blocked commands)
+      source: https://github.com/plandrem/agent-library/blob/main/skills/damage-control/SKILL.md
+
+    - name: deep-research
+      description: Structured deep research workflow for markets, features, competitors, regulations, and problem spaces
+      source: https://github.com/plandrem/agent-library/blob/main/skills/deep-research/SKILL.md
+
+    - name: playwright-cli
+      description: Token-efficient headless browser automation via playwright-cli (parallel sessions, screenshots, scraping)
+      source: https://github.com/plandrem/agent-library/blob/main/skills/playwright-cli/SKILL.md
+
+    - name: sandbox-access
+      description: Unblock tools/commands/domains restricted by the Apple Claude Code sandbox
+      source: https://github.com/plandrem/agent-library/blob/main/skills/sandbox-access/SKILL.md
+
+    - name: subtask
+      description: Parallel task orchestration CLI that dispatches work to AI workers in isolated git workspaces
+      source: https://github.com/plandrem/agent-library/blob/main/skills/subtask/SKILL.md
+
+  agents:
+    - name: apple-claude-code-expert
+      description: Reference lookup for Apple Claude Code (install, config, security, MCP, monitoring, architecture)
+      source: https://github.com/plandrem/agent-library/blob/main/agents/apple-claude-code-expert.md
+
+    - name: architect
+      description: Designs comprehensive test cases for a function before implementation
+      source: https://github.com/plandrem/agent-library/blob/main/agents/architect.md
+
+    - name: claude-mem-expert
+      description: Reference lookup for the claude-mem plugin (MCP tools, search workflow, observation types, hooks, worker service)
+      source: https://github.com/plandrem/agent-library/blob/main/agents/claude-mem-expert.md
+
+    - name: code-engineer
+      description: Implements source logic of a function per a spec and tests
+      source: https://github.com/plandrem/agent-library/blob/main/agents/code-engineer.md
+
+    - name: information-retriever
+      description: Finds specific information across codebase, documentation, and external resources
+      source: https://github.com/plandrem/agent-library/blob/main/agents/information-retriever.md
+
+    - name: memOS-expert
+      description: Reference lookup for the memOS framework (examples, source code locations)
+      source: https://github.com/plandrem/agent-library/blob/main/agents/memOS-expert.md
+
+    - name: playwright-cli-agent
+      description: Browser automation agent using Playwright CLI (UI testing, screenshots, scraping)
+      source: https://github.com/plandrem/agent-library/blob/main/agents/playwright-cli-agent.md
+      requires:
+        - skill:playwright-cli
+
+    - name: prd-code-engineer
+      description: (execute_prd bundle) Implements source code per the atomic file structure
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-code-engineer.md
+
+    - name: prd-code-engineer-reviewer
+      description: (execute_prd bundle) Reviews code implementations against specs and atomic architecture
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-code-engineer-reviewer.md
+
+    - name: prd-criterion-orchestrator
+      description: (execute_prd bundle) Orchestrates the full TDD workflow for a single PRD acceptance criterion
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-criterion-orchestrator.md
+
+    - name: prd-etr-verifier
+      description: (execute_prd bundle) Verifies Engineering & Technical Requirements (tests, type checking, lint, architecture)
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-etr-verifier.md
+
+    - name: prd-evolution-agent
+      description: (execute_prd bundle) Meta-agent — analyzes orchestrator runs and evolves agent prompts when patterns detected
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-evolution-agent.md
+
+    - name: prd-product-verifier
+      description: (execute_prd bundle) Verifies an acceptance criterion is actually met via CLI examples
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-product-verifier.md
+
+    - name: prd-test-architect
+      description: (execute_prd bundle) Designs comprehensive test cases before implementation
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-test-architect.md
+
+    - name: prd-test-architect-reviewer
+      description: (execute_prd bundle) Reviews test-architect plans against specs
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-test-architect-reviewer.md
+
+    - name: prd-test-engineer
+      description: (execute_prd bundle) Implements test cases from an approved test plan
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-test-engineer.md
+
+    - name: prd-test-engineer-reviewer
+      description: (execute_prd bundle) Reviews test implementations against specs
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/agents/prd-test-engineer-reviewer.md
+
+    - name: project-manager
+      description: Manages project tasks and tracking implementation progress in agent-based workflows
+      source: https://github.com/plandrem/agent-library/blob/main/agents/project-manager.md
+
+    - name: quack-responder
+      description: Dummy agent for testing routing/configuration (always replies 'quack quack!')
+      source: https://github.com/plandrem/agent-library/blob/main/agents/quack-responder.md
+
+    - name: reviewer
+      description: Reviews architect plans, test implementations, or code implementations against specs
+      source: https://github.com/plandrem/agent-library/blob/main/agents/reviewer.md
+
+    - name: spec-review
+      description: Reviews spec/plan files for ambiguities, unhandled cases, and acceptance criteria gaps
+      source: https://github.com/plandrem/agent-library/blob/main/agents/spec-review.md
+
+    - name: test-engineer
+      description: Implements test cases from a test plan
+      source: https://github.com/plandrem/agent-library/blob/main/agents/test-engineer.md
+
+  prompts:
+    - name: ask
+      description: Q&A mode
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/ask.md
+
+    - name: basic-memory-init
+      description: Initialize a basic, single text file memory system
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/ai/basic-memory/init.md
+
+    - name: basic-memory-reflect
+      description: Capture learnings from the current session into basic memory
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/ai/basic-memory/reflect.md
+
+    - name: build_expert_agent
+      description: Create an expert agent with an auto-generated index
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/build_expert_agent.md
+
+    - name: build_prd
+      description: Create a PRD file based on a plan
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/build_prd.md
+
+    - name: build_skill
+      description: Create a new Claude Code skill
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/build_skill.md
+
+    - name: coach-do-it-yourself
+      description: Coach prompt — encourages doing it yourself
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/coach/do_it_yourself.md
+
+    - name: comments
+      description: Address `#AI:` comments in documents
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/comments.md
+
+    - name: commit
+      description: Git commit with disciplined message style
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/commit.md
+
+    - name: daily-standup
+      description: Dex morning standup — orient, triage inbox, commit to today's one thing
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/daily-standup.md
+
+    - name: execute_and_review
+      description: Iterate between executor and reviewer agents
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/execute_and_review.md
+
+    - name: execute_in_parallel
+      description: Execute multiple tasks in parallel
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/execute_in_parallel.md
+
+    - name: execute_prd
+      description: Execute PRD acceptance criteria via multi-agent TDD workflow with subprocess isolation (installs the prd-* agent team)
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/execute-prd/execute_prd.md
+      requires:
+        - agent:prd-criterion-orchestrator
+        - agent:prd-test-architect
+        - agent:prd-test-architect-reviewer
+        - agent:prd-test-engineer
+        - agent:prd-test-engineer-reviewer
+        - agent:prd-code-engineer
+        - agent:prd-code-engineer-reviewer
+        - agent:prd-etr-verifier
+        - agent:prd-product-verifier
+        - agent:prd-evolution-agent
+
+    - name: find
+      description: Search for information using a Haiku-backed agent
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/find.md
+
+    - name: ingest_voice_memo
+      description: Read a voice memo file
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/ingest_voice_memo.md
+
+    - name: launch_agent_flow
+      description: Run a monolithic-first code execution workflow
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/launch_agent_flow.md
+
+    - name: new_agent
+      description: Create a new custom agent
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/new_agent.md
+
+    - name: new_command
+      description: Add a new custom slash command
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/new_command.md
+
+    - name: pm-install
+      description: Install CCPM (Claude Code PM) into the current project
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/pm/install.md
+
+    - name: process_voice_memo
+      description: Clean a voice memo transcript (remove ums, add line breaks)
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/process_voice_memo.md
+
+    - name: ralph
+      description: Execute a PRD using the Ralph Wiggum loop (ralph.sh)
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/ralph.md
+
+    - name: revise
+      description: Revise a section based on recent changes
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/revise.md
+
+    - name: spec
+      description: Create a technical specification for a new feature
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/spec.md
+
+    - name: tdd
+      description: Execute a feature via Test Driven Development
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/tdd.md
+
+    - name: weekly-plan
+      description: Weekly planning ritual with Dex — Monday outlook and commitment
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/weekly-plan.md
+
+    - name: weekly-review
+      description: Weekly retrospective with Dex — Friday afternoon
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/weekly-review.md
+
+    - name: worktree
+      description: Create a git worktree
+      source: https://github.com/plandrem/agent-library/blob/main/prompts/worktree.md

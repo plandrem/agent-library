@@ -127,9 +127,24 @@ library:
       source: https://github.com/plandrem/agent-library/blob/main/agents/test-engineer.md
 
   prompts:
+    - name: apple
+      description: (bundle) Apple-internal Claude Code setup — apple-identity, sandbox-access, apple-claude-code-expert
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/apple/apple.md
+      requires:
+        - skill:apple-identity
+        - skill:sandbox-access
+        - agent:apple-claude-code-expert
+
     - name: ask
       description: Q&A mode
       source: https://github.com/plandrem/agent-library/blob/main/prompts/ask.md
+
+    - name: basic-memory
+      description: (bundle) Basic memory — init + reflect for a single text-file persistence layer
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/basic-memory/basic-memory.md
+      requires:
+        - prompt:basic-memory-init
+        - prompt:basic-memory-reflect
 
     - name: basic-memory-init
       description: Initialize a basic, single text file memory system
@@ -167,6 +182,17 @@ library:
       description: Dex morning standup — orient, triage inbox, commit to today's one thing
       source: https://github.com/plandrem/agent-library/blob/main/prompts/daily-standup.md
 
+    - name: dex
+      description: (bundle) Dex coaching persona — weekly ritual layer (standup, plan, review) and voice memo tooling
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/dex/dex.md
+      requires:
+        - prompt:daily-standup
+        - prompt:weekly-plan
+        - prompt:weekly-review
+        - prompt:ingest_voice_memo
+        - prompt:process_voice_memo
+        - agent:claude-mem-expert
+
     - name: execute_and_review
       description: Iterate between executor and reviewer agents
       source: https://github.com/plandrem/agent-library/blob/main/prompts/execute_and_review.md
@@ -194,6 +220,13 @@ library:
       description: Search for information using a Haiku-backed agent
       source: https://github.com/plandrem/agent-library/blob/main/prompts/find.md
 
+    - name: git
+      description: (bundle) Git hygiene — disciplined commits and worktree management
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/git/git.md
+      requires:
+        - prompt:commit
+        - prompt:worktree
+
     - name: ingest_voice_memo
       description: Read a voice memo file
       source: https://github.com/plandrem/agent-library/blob/main/prompts/ingest_voice_memo.md
@@ -201,6 +234,18 @@ library:
     - name: launch_agent_flow
       description: Run a monolithic-first code execution workflow
       source: https://github.com/plandrem/agent-library/blob/main/prompts/launch_agent_flow.md
+
+    - name: meta
+      description: (bundle) Authoring primitives — build skills, agents, commands, specs, PRDs; plus spec-review agent
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/meta/meta.md
+      requires:
+        - prompt:build_skill
+        - prompt:build_expert_agent
+        - prompt:new_agent
+        - prompt:new_command
+        - prompt:spec
+        - prompt:build_prd
+        - agent:spec-review
 
     - name: new_agent
       description: Create a new custom agent
@@ -213,6 +258,13 @@ library:
     - name: pm-install
       description: Install CCPM (Claude Code PM) into the current project
       source: https://github.com/plandrem/agent-library/blob/main/prompts/pm/install.md
+
+    - name: playwright
+      description: (bundle) Browser automation — playwright-cli skill plus the companion agent for delegated browser work
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/playwright/playwright.md
+      requires:
+        - skill:playwright-cli
+        - agent:playwright-cli-agent
 
     - name: process_voice_memo
       description: Clean a voice memo transcript (remove ums, add line breaks)
@@ -231,8 +283,14 @@ library:
       source: https://github.com/plandrem/agent-library/blob/main/prompts/spec.md
 
     - name: tdd
-      description: Execute a feature via Test Driven Development
-      source: https://github.com/plandrem/agent-library/blob/main/prompts/tdd.md
+      description: (bundle) Execute a feature via Test Driven Development, with the generic TDD agent team (architect, test-engineer, code-engineer, reviewer, project-manager)
+      source: https://github.com/plandrem/agent-library/blob/main/bundles/tdd/tdd.md
+      requires:
+        - agent:architect
+        - agent:test-engineer
+        - agent:code-engineer
+        - agent:reviewer
+        - agent:project-manager
 
     - name: weekly-plan
       description: Weekly planning ritual with Dex — Monday outlook and commitment
